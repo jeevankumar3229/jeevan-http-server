@@ -10,9 +10,14 @@ function creatingServer() {
                 res.end("")
                 break;
             case '/html':
-                res.writeHead(200, { "Content-Type": "text/html" })
-                const htmlData = fs.readFileSync('index.html')
-                res.end(htmlData)
+                try {
+                    res.writeHead(200, { "Content-Type": "text/html" })
+                    const htmlData = fs.readFileSync('index.html')
+                    res.end(htmlData)
+                }
+                catch (Error) {
+                    res.end(Error)
+                }
                 break;
             case '/json':
                 res.writeHead(200, { "Content-Type": "application/json" })
